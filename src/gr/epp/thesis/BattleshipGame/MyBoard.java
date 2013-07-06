@@ -76,7 +76,7 @@ public class MyBoard extends JPanel implements MouseListener {
                     } else if (exiting) {
                         getComponent(coords[2] + i).setBackground(Color.CYAN);
                     } else {
-                        getComponent(coords[2] + i).setBackground(Color.DARK_GRAY);
+                        getComponent(coords[2] + i).setBackground(Color.DARK_GRAY);                 
                         ((JButton) getComponent(coords[2] + i)).removeMouseListener(this);
                     }
                 }

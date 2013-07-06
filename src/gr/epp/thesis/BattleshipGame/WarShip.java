@@ -1,6 +1,7 @@
 package gr.epp.thesis.BattleshipGame;
 
 import java.awt.Color;
+import java.util.HashSet;
 import javax.swing.JButton;
 import javax.swing.border.Border;
 import javax.swing.border.LineBorder;
@@ -13,11 +14,13 @@ public class WarShip extends JButton {
 
     private int warshipBlocks;
     private Border border = new LineBorder(Color.GREEN, 1, false);
+    protected HashSet<Integer> coordinates;
 
     public WarShip(int warshipBlocks, Color color) {
         this.warshipBlocks = warshipBlocks;
         setBackground(color);
         setBorder(border);
+        coordinates = new HashSet<Integer>(warshipBlocks);
     }
 
     //Getters & Setters :
@@ -27,5 +30,16 @@ public class WarShip extends JButton {
 
     public void setWarshipBlocks(int warshipBlocks) {
         this.warshipBlocks = warshipBlocks;
+    }
+
+    public HashSet<Integer> getCoordinates() {
+        return coordinates;
+    }
+
+    public void setCoordinates(HashSet<Integer> coordinates) {
+        this.coordinates = coordinates;
+    }
+    
+    public void addCoordinate(){
     }
 }

@@ -1,5 +1,6 @@
 package gr.epp.thesis.BattleshipGame;
 
+import gr.epp.thesis.BattleshipGame.etc.Server;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.GridLayout;
