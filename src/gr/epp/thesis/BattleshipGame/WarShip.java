@@ -14,7 +14,7 @@ public class WarShip extends JButton {
 
     private int warshipBlocks;
     private Border border = new LineBorder(Color.GREEN, 1, false);
-    protected HashSet<Integer> coordinates;
+    private HashSet<Integer> coordinates;
 
     public WarShip(int warshipBlocks, Color color) {
         this.warshipBlocks = warshipBlocks;
@@ -40,6 +40,7 @@ public class WarShip extends JButton {
         this.coordinates = coordinates;
     }
     
-    public void addCoordinate(){
+    public void addCoordinate(int coordinate){
+        coordinates.add(coordinate);
     }
 }
