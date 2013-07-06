@@ -9,6 +9,9 @@ package gr.epp.thesis.BattleshipGame;
  * @author vigos.ioannis
  */
 public class oooo {
-    
+
+    public oooo() {
+        System.out.println("OK!");
+
+    }
 }
-Εισαι ΓΚΙΟΟΟΟΝΗΣ!
