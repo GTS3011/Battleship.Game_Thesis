@@ -1,4 +1,4 @@
-package gr.epp.thesis.BattleshipGame;
+package gr.epp.thesis.BattleshipGame.etc;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
