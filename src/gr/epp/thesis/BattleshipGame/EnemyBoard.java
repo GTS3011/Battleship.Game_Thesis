@@ -146,5 +146,10 @@ public class EnemyBoard extends JPanel implements MouseListener {
 
     public void setEnabledAll(boolean enabledAll) {
         this.enabledAll = enabledAll;
+        getParent().setEnabled(true);
+        for (int i = 0; i < getComponentCount(); i++) {
+            getComponent(i).addMouseListener(this);
+            getComponent(i).setEnabled(true);
+        }
     }
 }
