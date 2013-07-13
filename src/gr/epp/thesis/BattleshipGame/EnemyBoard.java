@@ -16,6 +16,9 @@ import javax.swing.JPanel;
 /**
  *
  * @author tsoutsas.yiorgos & vigkos.ioannis
+ * @project Thesis_Battleship.Game
+ * @author Vidakis.Nikolas & Vellis Giorgos
+ * @since 
  */
 public class EnemyBoard extends JPanel implements MouseListener {
 
