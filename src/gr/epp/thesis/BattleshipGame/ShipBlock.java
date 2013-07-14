@@ -24,6 +24,7 @@ public final class ShipBlock extends JButton {
     }
 
     public int getReset() {
+        System.out.println("OK !");
         return reset;
     }
 

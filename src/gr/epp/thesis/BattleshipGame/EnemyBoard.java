@@ -9,16 +9,18 @@ import java.awt.Point;
 import java.awt.Toolkit;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.Arrays;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.xml.bind.ParseConversionEvent;
 
 /**
  *
  * @author tsoutsas.yiorgos & vigkos.ioannis
  * @project Thesis_Battleship.Game
  * @author Vidakis.Nikolas & Vellis Giorgos
- * @since 
+ * @since
  */
 public class EnemyBoard extends JPanel implements MouseListener {
 
@@ -26,6 +28,8 @@ public class EnemyBoard extends JPanel implements MouseListener {
     private int columns = 10;
     private int[] coords = new int[3];
     private boolean enabledAll = false;
+    private JButton[] hitedBlocks = new JButton[rows * columns];
+    private int cnt = 0;
     Toolkit toolkit = Toolkit.getDefaultToolkit();
     Image target = toolkit.getImage("graphics/target.gif");
     Point cursorHotSpot = new Point(10, 10);
@@ -44,8 +48,6 @@ public class EnemyBoard extends JPanel implements MouseListener {
 
         // PIRAMATIKO !! Random Battle Stations!!
         readyWarships();
-
-
     }
 
     /**
@@ -109,16 +111,40 @@ public class EnemyBoard extends JPanel implements MouseListener {
     @Override
     public void mouseClicked(MouseEvent e) {
         getBlockPosition((JButton) e.getSource());
-        JButton temp = (JButton) e.getSource();
+        JButton tempBlock = (JButton) e.getSource();
         System.out.println("Firing @ : " + coords[0] + " - " + coords[1]);
-        if (temp instanceof ShipBlock) {
-            temp.setIcon(new ImageIcon("graphics/fire.gif"));
+        if (tempBlock instanceof ShipBlock) {
+            ShipBlock currShipBlock = (ShipBlock) tempBlock;
+            currShipBlock.setIcon(new ImageIcon("graphics/fire.gif"));
             System.out.println("hit!");
-            temp.removeMouseListener(this);
+            hitedBlocks[cnt] = currShipBlock;
+            tempBlock.removeMouseListener(this);
+            cnt++;
         } else {
-            temp.setIcon(new ImageIcon("graphics/miss.gif"));
+            tempBlock.setIcon(new ImageIcon("graphics/miss.gif"));
             System.out.println("miss");
-            temp.removeMouseListener(this);
+            tempBlock.removeMouseListener(this);
+        }
+        //disableHit(true, hitedBlocks);        
+    }
+
+    public void disableHit(boolean turnFinished, JButton[] hitedBlocks) {
+        if (turnFinished) {
+            getParent().setEnabled(false);
+            for (int i = 0; i
+                    < getComponentCount(); i++) {
+                if (!Arrays.asList(hitedBlocks).contains(getComponent(i))) {
+                    getComponent(i).setEnabled(false);
+                    getComponent(i).removeMouseListener(this);
+                }
+            }
+        } else {
+            getParent().setEnabled(true);
+            for (int i = 0; i < getComponentCount();
+                    i++) {
+                getComponent(i).setEnabled(true);
+                getComponent(i).addMouseListener(this);
+            }
         }
     }
 

@@ -38,7 +38,6 @@ public class MyBoard extends JPanel implements MouseListener {
     public final SeaBlock createSeaBlocks() {
         SeaBlock seaBlock = new SeaBlock();
         seaBlock.addMouseListener(this);
-        seaBlock.setPreferredSize(new Dimension(50, 50));
         return seaBlock;
     }
 

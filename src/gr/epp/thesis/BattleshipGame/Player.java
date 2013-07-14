@@ -32,9 +32,9 @@ public class Player extends Thread {
     public static void main(String[] args) {
         //Starts the thread to listen for client number
         Thread t = new Thread(new Player());
-        Thread t2 = new Thread(new Player());
+        //Thread t2 = new Thread(new Player());
         t.start();
-        t2.start();
+        //t2.start();
         //Battleship_Game entryPoint = new Battleship_Game();
     }
 }

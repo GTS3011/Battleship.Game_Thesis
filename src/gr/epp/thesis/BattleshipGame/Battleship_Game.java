@@ -13,6 +13,9 @@ import javax.swing.JPanel;
 /**
  *
  * @author tsoutsas.yiorgos & vigkos.ioannis
+ * @project Thesis_Battleship.Game
+ * @author Vidakis.Nikolas & Vellis Giorgos
+ * @since
  */
 public final class Battleship_Game extends JFrame {
 
@@ -28,6 +31,7 @@ public final class Battleship_Game extends JFrame {
     private int tempCounter = 0;
     private boolean firstPlayerHit = false;
     Server server = new Server();
+    private EnemyPlayer_Test virtualEnemy = new EnemyPlayer_Test();
 
     public Battleship_Game() {
 
