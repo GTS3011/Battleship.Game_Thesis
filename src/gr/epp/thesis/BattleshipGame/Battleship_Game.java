@@ -30,7 +30,6 @@ public final class Battleship_Game extends JFrame {
     ImageIcon decorImage = new ImageIcon("graphics/bismarck.png");
     JLabel decorLabel = new JLabel("", decorImage, JLabel.CENTER);
     private int tempCounter = 0;
-    private boolean firstPlayerHit = false;
     Server server = new Server();
     private EnemyPlayer_Test virtualEnemy = new EnemyPlayer_Test();
 
@@ -66,7 +65,38 @@ public final class Battleship_Game extends JFrame {
         setVisible(true);
         validate();
 
-        // Controls the flow of the game before battle. When all ships are on grid, the game attempts to start.
+        /**
+         * Controls the flow of the game before battle. When all ships are on
+         * grid, the game attempts to start.
+         */
+        if (ownTurn()) {
+            enemyBoard.setEnabledAll(true);
+        } else {
+            myBoard.enemysFire(virtualEnemy.enemyFire());
+        }
+
+        validate();
+    }
+
+    /**
+     *
+     * @return
+     */
+    public boolean ownTurn() {
+        if (ownBattleStations() || virtualEnemy.isFired()) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    /**
+     * PROXIRO!! Elegxei an exoun stithei ta ploia stin myBoard. Enimeronei tin
+     * ownTurn() oste na ksekinisoume protoi tis voles.
+     *
+     * @return
+     */
+    public boolean ownBattleStations() {
         while (tempCounter != 5) {
             myBoard.setShipBlocks(myShips.getShipBlocks());
             if (myBoard.isShipOnGrid()) {
@@ -76,24 +106,6 @@ public final class Battleship_Game extends JFrame {
             }
             validate();
         }
-        myBoard.enemysFire(virtualEnemy.enemyFire());
-
-        if (tempCounter == 5) {
-            enemyBoard.setEnabledAll(true);
-        }
-        validate();
-
-    }
-
-    /* 
-     * NOT WORKING! PROXIRO! ALLERTS..
-     */
-    public void alertReady() {
-        final JOptionPane optionPane = new JOptionPane(
-                "Start the Battle?",
-                JOptionPane.QUESTION_MESSAGE,
-                JOptionPane.YES_NO_OPTION);
-        add(optionPane);
-        System.out.println("ooe");
+        return true;
     }
 }

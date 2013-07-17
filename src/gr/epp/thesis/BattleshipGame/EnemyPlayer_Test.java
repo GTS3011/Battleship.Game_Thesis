@@ -13,7 +13,8 @@ import java.util.Random;
  */
 
 /*
- * Proxiri Klasi.. gia tis tuxaies voles tou antipalou. To be DELETED!!!
+ * Proxiri Klasi.. gia tis tuxaies voles tou antipalou. 
+ * About to be DELETED!!!
  */
 public class EnemyPlayer_Test {
 
@@ -21,6 +22,7 @@ public class EnemyPlayer_Test {
     private int max = 99;
     private int cnt = 0;
     private int enemyFire = 0;
+    private boolean fired = false;
     private int[] hittenTargets = new int[100];
     Random rand = new Random();
 
@@ -28,8 +30,10 @@ public class EnemyPlayer_Test {
     }
 
     /*
-     * Proxiri methodos. 
-     * Rixnei tis voles sti myBoard tyxaia, kai sigratei sti mnimi pou exei xtipisei idi..!!
+     * Proxiri methodos!!
+     * Rixnei tis voles sti myBoard tyxaia, kai sigratei sti mnimi pou exei 
+     * xtipisei idi..!! O Pinakas hittenTargets periexei tis idi dokimasmenes
+     * voles tou antipaloy
      */
     public int enemyFire() {
         if (!Arrays.asList(hittenTargets).contains(enemyFire)) {
@@ -44,6 +48,11 @@ public class EnemyPlayer_Test {
         for (int i = 0; i < cnt; i++) {
             System.out.println("" + hittenTargets[i]);
         }
+        fired = true;
         return enemyFire;
+    }
+
+    public boolean isFired() {
+        return fired;
     }
 }

@@ -131,8 +131,7 @@ public class EnemyBoard extends JPanel implements MouseListener {
     public void disableHit(boolean turnFinished, JButton[] hitedBlocks) {
         if (turnFinished) {
             getParent().setEnabled(false);
-            for (int i = 0; i
-                    < getComponentCount(); i++) {
+            for (int i = 0; i < getComponentCount(); i++) {
                 if (!Arrays.asList(hitedBlocks).contains(getComponent(i))) {
                     getComponent(i).setEnabled(false);
                     getComponent(i).removeMouseListener(this);
