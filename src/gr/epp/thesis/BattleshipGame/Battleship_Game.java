@@ -69,8 +69,8 @@ public final class Battleship_Game extends JFrame {
          * Controls the flow of the game before battle. When all ships are on
          * grid, the game attempts to start.
          */
-        if (ownTurn()) {
-            enemyBoard.setEnabledAll(true);
+        if (ownBattleStations()) {
+            ownTurn(true);
         } else {
             myBoard.enemysFire(virtualEnemy.enemyFire());
         }
@@ -82,12 +82,7 @@ public final class Battleship_Game extends JFrame {
      *
      * @return
      */
-    public boolean ownTurn() {
-        if (ownBattleStations() || virtualEnemy.isFired()) {
-            return true;
-        } else {
-            return false;
-        }
+    public boolean ownTurn(boolean ownTurn) {
     }
 
     /**
@@ -96,7 +91,7 @@ public final class Battleship_Game extends JFrame {
      *
      * @return
      */
-    public boolean ownBattleStations() {
+    public boolean ownBattleStations(boolean setOneTime) {
         while (tempCounter != 5) {
             myBoard.setShipBlocks(myShips.getShipBlocks());
             if (myBoard.isShipOnGrid()) {

@@ -23,19 +23,20 @@ import javax.xml.bind.ParseConversionEvent;
  * @since
  */
 public class EnemyBoard extends JPanel implements MouseListener {
-
+    
     private int rows = 10;
     private int columns = 10;
     private int[] coords = new int[3];
     private boolean enabledAll = false;
     private JButton[] hitedBlocks = new JButton[rows * columns];
     private int cnt = 0;
+    private boolean playerFired = false;
     Toolkit toolkit = Toolkit.getDefaultToolkit();
     Image target = toolkit.getImage("graphics/target.gif");
     Point cursorHotSpot = new Point(10, 10);
-
+    
     public EnemyBoard() {
-
+        
         setLayout(new GridLayout(rows, columns));
         setBackground(Color.WHITE);
         setEnabled(false);
@@ -125,9 +126,9 @@ public class EnemyBoard extends JPanel implements MouseListener {
             System.out.println("miss");
             tempBlock.removeMouseListener(this);
         }
-        //disableHit(true, hitedBlocks);        
+        playerFired = true;
     }
-
+    
     public void disableHit(boolean turnFinished, JButton[] hitedBlocks) {
         if (turnFinished) {
             getParent().setEnabled(false);
@@ -146,11 +147,11 @@ public class EnemyBoard extends JPanel implements MouseListener {
             }
         }
     }
-
+    
     @Override
     public void mousePressed(MouseEvent e) {
     }
-
+    
     @Override
     public void mouseReleased(MouseEvent e) {
     }
@@ -163,21 +164,31 @@ public class EnemyBoard extends JPanel implements MouseListener {
         Cursor targetCursor = toolkit.createCustomCursor(target, cursorHotSpot, "Cursor");
         setCursor(targetCursor);
     }
-
+    
     @Override
     public void mouseExited(MouseEvent e) {
     }
-
+    
     public boolean isEnabledAll() {
         return enabledAll;
     }
-
-    public void setEnabledAll(boolean enabledAll) {
-        this.enabledAll = enabledAll;
-        getParent().setEnabled(true);
-        for (int i = 0; i < getComponentCount(); i++) {
-            getComponent(i).addMouseListener(this);
-            getComponent(i).setEnabled(true);
+    
+    public void setEnableAll(boolean enableAll) {
+        getParent().setEnabled(enableAll);
+        if (enableAll) {
+            for (int i = 0; i < getComponentCount(); i++) {
+                getComponent(i).addMouseListener(this);
+                getComponent(i).setEnabled(enableAll);
+            }
+        } else {
+            for (int i = 0; i < getComponentCount(); i++) {
+                getComponent(i).removeMouseListener(this);
+                getComponent(i).setEnabled(enableAll);
+            }
         }
+    }
+    
+    public boolean isPlayerFired() {
+        return playerFired;
     }
 }
