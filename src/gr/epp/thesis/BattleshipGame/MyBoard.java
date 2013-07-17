@@ -1,10 +1,10 @@
 package gr.epp.thesis.BattleshipGame;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -22,6 +22,7 @@ public class MyBoard extends JPanel implements MouseListener {
     private boolean horizontal = true;
     private int tempHold = 0;
     private boolean shipOnGrid = false;
+    private int blocksDestr = 0;
 
     public MyBoard() {
         setLayout(new GridLayout(rows, columns));
@@ -48,7 +49,6 @@ public class MyBoard extends JPanel implements MouseListener {
     private ShipBlock createShipBlock(int shipBlocks, int orientation, int currBlock) {
         ShipBlock shipBlock = new ShipBlock(shipBlocks, orientation, currBlock, true);
         shipBlock.addMouseListener(this);
-        shipBlock.setPreferredSize(new Dimension(50, 50));
         return shipBlock;
     }
 
@@ -134,6 +134,11 @@ public class MyBoard extends JPanel implements MouseListener {
                 return freeArea;
         }
         return false;
+    }
+
+    public void enemysFire(int hittenPosition) {
+        JButton hittenBlock = (JButton) getComponent(hittenPosition);
+        hittenBlock.setIcon(new ImageIcon("graphics/fire.gif"));
     }
 
     /*

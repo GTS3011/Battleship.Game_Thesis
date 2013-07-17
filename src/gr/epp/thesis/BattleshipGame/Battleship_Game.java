@@ -15,7 +15,8 @@ import javax.swing.JPanel;
  * @author tsoutsas.yiorgos & vigkos.ioannis
  * @project Thesis_Battleship.Game
  * @author Vidakis.Nikolas & Vellis Giorgos
- * @since
+ * @since Spring Semester 2013
+ * @inst. Applied Informatics and Multimedia - TEI of Crete
  */
 public final class Battleship_Game extends JFrame {
 
@@ -75,10 +76,13 @@ public final class Battleship_Game extends JFrame {
             }
             validate();
         }
+        myBoard.enemysFire(virtualEnemy.enemyFire());
+
         if (tempCounter == 5) {
             enemyBoard.setEnabledAll(true);
         }
         validate();
+
     }
 
     /* 
