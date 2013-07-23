@@ -64,33 +64,7 @@ public final class Battleship_Game extends JFrame {
         setVisible(true);
         validate();
 
-        /**
-         * Controls the flow of the game before battle. When all ships are on
-         * grid, the game attempts to start.
-         */
-        if (ownBattleStations()) {
-            ownTurn(true);
-        } else {
-            myBoard.enemysFire(virtualEnemy.enemyFire());
-        }
-
-        validate();
-    }
-
-    /**
-     *
-     * @return
-     */
-    public boolean ownTurn(boolean ownTurn) {
-    }
-
-    /**
-     * PROXIRO!! Elegxei an exoun stithei ta ploia stin myBoard. Enimeronei tin
-     * ownTurn() oste na ksekinisoume protoi tis voles.
-     *
-     * @return
-     */
-    public boolean ownBattleStations(boolean setOneTime) {
+        // Controls the flow of the game before battle. When all ships are on grid, the game attempts to start.
         while (tempCounter != 5) {
             myBoard.setShipBlocks(myShips.getShipBlocks());
             if (myBoard.isShipOnGrid()) {
@@ -100,6 +74,21 @@ public final class Battleship_Game extends JFrame {
             }
             validate();
         }
-        return true;
+        if (tempCounter == 5) {
+            //enemyBoard.setEnabledAll(true);
+        }
+        validate();
+    }
+
+    /* 
+     * NOT WORKING! PROXIRO! ALLERTS..
+     */
+    public void alertReady() {
+        final JOptionPane optionPane = new JOptionPane(
+                "Start the Battle?",
+                JOptionPane.QUESTION_MESSAGE,
+                JOptionPane.YES_NO_OPTION);
+        add(optionPane);
+        System.out.println("ooe");
     }
 }
